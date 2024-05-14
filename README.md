@@ -1,5 +1,5 @@
 # deck-checker
-Given an election (i.e., a ballot style) definition and a test deck, produces a swap (i.e., a non-identity bijective mapping) between swaps and candidates that is not detected by the test deck (if such a swap exists). 
+This repository provides code to determine, given an election (i.e., a ballot style) and a test deck, whether there exists a swap (i.e., a non-identity bijective mapping) between targets and candidates that is not detected by the test deck. 
 
 ## Dependencies 
 Required software:

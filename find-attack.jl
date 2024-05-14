@@ -7,6 +7,9 @@ function FindSwap(
         model::Model
     )::Tuple{Int, Vector{Int}}
 
+    # Turn off output for solver
+    set_silent(model)
+
     # Process election for auxiliary data
     num_candidates = sum(num_candidates_per_contest)
     num_contests = length(num_candidates_per_contest)
@@ -69,12 +72,12 @@ function FindSwap(
     end
 
     # Ensure that the mapping between target and candidate is bijective
-    @constraint(model, [i=1:num_candidates], sum(x[i,j] for j=1:num_candidates if in_group(i,j)) == 1)
-    @constraint(model, [j=1:num_candidates], sum(x[i,j] for i=1:num_candidates if in_group(i,j)) == 1)
+    @constraint(model, [i=1:num_candidates], sum(x[i,j] for j=1:num_candidates) == 1)
+    @constraint(model, [j=1:num_candidates], sum(x[i,j] for i=1:num_candidates) == 1)
 
     # Ensure that model does not cause an unexpected overvote
     @constraint(model, [c=1:num_contests, b=1:length(test_deck)],
-                sum(sum(x[i,j] for j in contest_to_candidates[c] if in_group(i,j)) for i in test_deck[b])
+                sum(sum(x[i,j] for i in contest_to_candidates[c]) for j in test_deck[b])
                 ≤ num_votes_per_contest[c])
     
     # Require that at least one candidate receives votes from some other target
@@ -94,9 +97,9 @@ function FindSwap(
     # Otherwise, return the permutation of candidates
     count = 0
     permutation = Vector{Int}()
-    # For each target...
+    # For each candidate...
     for i=1:num_candidates
-        # ...append the index of the corresponding candidate
+        # ...append the target that maps to the candidate
         for j=1:num_candidates
             if value(x[i,j]) ≥ 0.5
                 if i != j

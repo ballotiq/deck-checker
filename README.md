@@ -5,9 +5,10 @@ Given an election (i.e., a ballot style) definition and a test deck, produces a 
 ## Dependencies 
 
 Required software:
-- Julia programming language
+- [Julia programming language](https://julialang.org/)
   
 Required Julia packages:
-- JuMP
-- 
+- [JuMP](https://jump.dev/JuMP.jl/stable/)
+- [MathOptInterface](https://jump.dev/MathOptInterface.jl/stable/)
+- [HiGHS.jl](https://github.com/jump-dev/HiGHS.jl)
 

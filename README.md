@@ -79,18 +79,22 @@ println("Test Deck 1")
 for b=1:length(test_deck)
     println("\tBallot ",b,": ", test_deck[b])
 end
+
+# If n is greater than 0, then there exists a
+# swap that is not detected by the test deck
+#
+# In this example, n is equal to 2, which
+# means that the swap found by the `FindSwap` function
+# involves swapping two candidates.
+
 println("Minimal swap: n = ",n)
+
+# Show the swap found by the `FindSwap` function. 
 for i=1:5
     println("\tCandidate ", i, " receives votes from target ", p[i])
 end
 
 ###############################################
-# If n is greater than 0, then there exists a
-# swap that is not detected by the test deck
-#
-# In the above example, n should be equal to 2, which
-# means that the swap found by the `FindSwap` function
-# involves swapping two candidates.
 #
 # The swap found by the `FindSwap` function is
 # encoded in the variable `p`. Specifically,
@@ -99,7 +103,9 @@ end
 #
 # p[i] = target that is interpretted as
 #        as associated with candidate i
-#
+###############################################
+
+###############################################
 # Below is an example of test deck for the
 # same election as above that does not have
 # any undetected swaps.
@@ -121,6 +127,9 @@ println("Test Deck 2")
 for b=1:length(test_deck)
     println("\tBallot ",b,": ", test_deck[b])
 end
+
+# This example should not have any undetected swaps, so n is
+# equal to zero.
+
 println("Minimal swap: n = ",n,"... no swap found!")
 ```
-Run the file `example.jl` using Julia to see a documented example of how to run the code. 

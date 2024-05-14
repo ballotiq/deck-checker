@@ -17,6 +17,7 @@ import Pkg
 Pkg.add("JuMP")
 Pkg.add("MathOptInterface")
 Pkg.add("HiGHS")
+
 ```
 
 ## Quick Example
@@ -120,9 +121,6 @@ println("Test Deck 2")
 for b=1:length(test_deck)
     println("\tBallot ",b,": ", test_deck[b])
 end
-println("Minimal swap: n = ",n)
-for i=1:5
-    println("\tCandidate ", i, " receives votes from target ", p[i])
-end
+println("Minimal swap: n = ",n,"... no swap found!")
 ```
 Run the file `example.jl` using Julia to see a documented example of how to run the code. 
